@@ -1,11 +1,11 @@
 /* Root background for all scenes */
 .root {
-    -fx-background-color: linear-gradient(to bottom right, #ffe4ec, #ffd6e8); /* soft bubble pink */
+    -fx-background-color: linear-gradient(to bottom right, #ffe4ec, #bb98d4); /* soft bubble pink */
 }
 
 /* Button styling - dark buttons */
 .button {
-    -fx-background-color: linear-gradient(to bottom right, #8b3a3a, #5c1a1a); /* dark pink/burgundy */
+    -fx-background-color: linear-gradient(to bottom right, #1e1e68, #0e1743); /* dark pink/burgundy */
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 15;
@@ -15,5 +15,5 @@
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(to bottom right, #5c1a1a, #8b3a3a); /* hover effect */
+    -fx-background-color: linear-gradient(to bottom right, #5757a3, #0e1743); /* hover effect */
 }
