@@ -8,24 +8,37 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class CourseController {
 
     @FXML
     private TextField nameField, codeField, creditField, teacher1Field, teacher2Field, totalCreditField;
-
     @FXML
     private ComboBox<String> gradeBox;
-
     @FXML
     private Button calculateButton;
 
     private ObservableList<Course> courseList = FXCollections.observableArrayList();
     private double sumCredits = 0.0;
+    private double totalCredit = 0.0;
 
     @FXML
     public void initialize() {
         gradeBox.getItems().addAll("A", "A-", "B+", "B", "B-", "C+", "C", "D", "F");
-        calculateButton.setDisable(true); // initially disabled
+
+        // Enable calculate only when total credit is set
+        totalCreditField.textProperty().addListener((obs, oldText, newText) -> {
+            try {
+                totalCredit = Double.parseDouble(newText);
+                checkTotalCredits();
+            } catch (NumberFormatException e) {
+                calculateButton.setDisable(true);
+            }
+        });
+
+        // Initially disable calculate button
+        calculateButton.setDisable(true);
     }
 
     @FXML
@@ -43,9 +56,7 @@ public class CourseController {
                 return;
             }
 
-            Course course = new Course(name, code, credit, teacher1, teacher2, grade);
-            courseList.add(course);
-
+            courseList.add(new Course(name, code, credit, teacher1, teacher2, grade));
             sumCredits += credit;
 
             // Clear input fields
@@ -64,14 +75,6 @@ public class CourseController {
     }
 
     private void checkTotalCredits() {
-        double totalCredit;
-        try {
-            totalCredit = Double.parseDouble(totalCreditField.getText());
-        } catch (NumberFormatException e) {
-            calculateButton.setDisable(true);
-            return;
-        }
-
         calculateButton.setDisable(sumCredits != totalCredit);
     }
 
@@ -82,13 +85,14 @@ public class CourseController {
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
 
+            // Pass course data to ResultController
             ResultController resultController = loader.getController();
             resultController.setCourseData(courseList);
 
             stage.setTitle("GPA Result");
             stage.show();
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             showAlert("Error", "Unable to load Result window.");
         }

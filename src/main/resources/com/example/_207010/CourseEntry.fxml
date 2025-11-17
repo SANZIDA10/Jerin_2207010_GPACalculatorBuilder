@@ -15,46 +15,34 @@
                         <ColumnConstraints percentWidth="30"/>
                         <ColumnConstraints percentWidth="70"/>
                     </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                        <RowConstraints/>
-                    </rowConstraints>
 
-                    <!-- Fields -->
-                    <Label text="Course Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <!-- Total Credit First -->
+                    <Label text="Total Credit:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="totalCreditField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                    <Label text="Course Code:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <TextField fx:id="codeField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <!-- Course Fields -->
+                    <Label text="Course Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="nameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                    <Label text="Credit:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                    <TextField fx:id="creditField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Course Code:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="codeField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-                    <Label text="Teacher 1:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                    <TextField fx:id="teacher1Field" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    <Label text="Credit:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="creditField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-                    <Label text="Teacher 2:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                    <TextField fx:id="teacher2Field" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    <Label text="Teacher 1:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="teacher1Field" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-                    <Label text="Grade:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                    <ComboBox fx:id="gradeBox" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                    <Label text="Teacher 2:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="teacher2Field" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-                    <Label text="Total Credit:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-                    <TextField fx:id="totalCreditField" GridPane.rowIndex="6" GridPane.columnIndex="1" editable="false"/>
-
-                    <Label text="GPA:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-                    <TextField fx:id="gpaField" GridPane.rowIndex="7" GridPane.columnIndex="1" editable="false"/>
+                    <Label text="Grade:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="gradeBox" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
                 </GridPane>
 
                 <HBox spacing="10" alignment="CENTER">
                     <Button text="Add Course" onAction="#handleAddCourse"/>
-                    <Button fx:id="calculateButton" text="Calculate GPA" onAction="#handleCalculate"/>
-
+                    <Button fx:id="calculateButton" text="Calculate GPA" onAction="#handleCalculate" disable="true"/>
                 </HBox>
 
             </children>
