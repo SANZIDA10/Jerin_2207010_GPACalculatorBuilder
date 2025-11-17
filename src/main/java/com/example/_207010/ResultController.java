@@ -2,8 +2,14 @@ package com.example._207010;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
 
 public class ResultController {
 
@@ -63,8 +69,20 @@ public class ResultController {
     }
 
     @FXML
-    private void handleBack() {
-        Stage stage = (Stage) courseTable.getScene().getWindow();
-        stage.close();
+    private void handleBack(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/_207010/CourseEntry.fxml"));
+        Parent root = loader.load();
+
+        Scene courseScene = new Scene(root);
+        courseScene.getStylesheets().add(getClass().getResource("/com/example/_207010/Styles.css").toExternalForm());
+
+        Stage stage = new Stage();
+        stage.setTitle("GPA Calculator - Course Entry");
+        stage.setScene(courseScene);
+        stage.show();
+
+        // Close current Result window
+        Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 }
