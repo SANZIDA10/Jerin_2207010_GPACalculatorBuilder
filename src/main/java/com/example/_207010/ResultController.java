@@ -12,7 +12,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 public class ResultController {
-
+private DB db = new DB();
     @FXML
     private TableView<CourseController.Course> courseTable;
 
@@ -70,6 +70,11 @@ public class ResultController {
 
     @FXML
     private void handleBack(ActionEvent event) throws IOException {
+        db.insertNote("fgh",
+                "kbbkh");
+
+
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/_207010/CourseEntry.fxml"));
         Parent root = loader.load();
 

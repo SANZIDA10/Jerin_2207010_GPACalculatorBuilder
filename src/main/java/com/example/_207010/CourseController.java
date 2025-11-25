@@ -14,6 +14,8 @@ import java.io.IOException;
 
 public class CourseController {
 
+
+
     @FXML
     private TextField totalCreditField, nameField, codeField, creditField, teacher1Field, teacher2Field;
 
