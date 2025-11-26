@@ -1,4 +1,5 @@
-module com.example._207010 {
+module com.example._207010
+{
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;

@@ -4,14 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example._207010.ResultController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.example._207010.ResultController">
     <children>
         <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
             <children>
                 <Label text="Course Results" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-                <TableView fx:id="courseTable" prefHeight="300">
+                <TableView fx:id="a" prefHeight="300">
                     <columns>
+                        <TableColumn fx:id="idCol" text="ID" prefWidth="40"/>
                         <TableColumn fx:id="nameCol" text="Course Name" prefWidth="120"/>
                         <TableColumn fx:id="codeCol" text="Course Code" prefWidth="100"/>
                         <TableColumn fx:id="creditCol" text="Credit" prefWidth="60"/>
@@ -23,10 +24,15 @@
 
                 <HBox spacing="10" alignment="CENTER_RIGHT">
                     <Label text="Total GPA:"/>
-                    <Label fx:id="totalGpaLabel" text="0.0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="j" text="0.0" style="-fx-font-weight: bold;"/>
                 </HBox>
 
-                <Button text="Back" onAction="#handleBack" maxWidth="100"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Update Selected" onAction="#handleUpdate"/>
+                    <Button text="Delete Selected" onAction="#handleDelete"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Back" onAction="#handleBack" maxWidth="100"/>
+                </HBox>
 
             </children>
             <padding>
@@ -35,4 +41,3 @@
         </VBox>
     </children>
 </AnchorPane>
-

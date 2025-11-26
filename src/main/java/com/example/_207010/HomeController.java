@@ -24,7 +24,6 @@ public class HomeController {
         stage.setScene(courseScene);
         stage.show();
 
-        // Close Home window
         Stage currentStage = (Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow();
         currentStage.close();
     }

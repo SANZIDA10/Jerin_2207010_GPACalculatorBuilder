@@ -12,100 +12,116 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CourseController {
-
-
+public class CourseController
+{
+    @FXML
+    private TextField a, b, c, d, e, f;
 
     @FXML
-    private TextField totalCreditField, nameField, codeField, creditField, teacher1Field, teacher2Field;
+    private ComboBox<String> g;
 
     @FXML
-    private ComboBox<String> gradeBox;
+    private Button h;
+
+    private final ObservableList<Course> i = FXCollections.observableArrayList();
 
     @FXML
-    private Button calculateButton;
-
-    private final ObservableList<Course> courseList = FXCollections.observableArrayList();
-
-    @FXML
-    public void initialize() {
-        // Populate gradeBox
-        gradeBox.getItems().addAll("A", "A-", "B+", "B", "B-", "C+", "C", "D", "F");
+    public void initialize()
+    {
+        g.getItems().addAll("A", "A-", "B+", "B", "B-", "C+", "C", "D", "F");
     }
 
     @FXML
-    private void handleAddCourse() {
-        String name = nameField.getText();
-        String code = codeField.getText();
-        String creditText = creditField.getText();
-        String teacher1 = teacher1Field.getText();
-        String teacher2 = teacher2Field.getText();
-        String grade = gradeBox.getValue();
+    private void handleAddCourse()
+    {
+        String j = b.getText();
+        String k = c.getText();
+        String l = d.getText();
+        String m = e.getText();
+        String n = f.getText();
+        String o = g.getValue();
 
-        if (name.isEmpty() || code.isEmpty() || creditText.isEmpty() || grade == null) {
+        if (j.isEmpty() || k.isEmpty() || l.isEmpty() || o == null)
+        {
             showAlert("Error", "Please fill all required fields.");
             return;
         }
 
-        double credit;
-        try {
-            credit = Double.parseDouble(creditText);
-        } catch (NumberFormatException e) {
+        double p;
+        try
+        {
+            p = Double.parseDouble(l);
+        }
+        catch (NumberFormatException q)
+        {
             showAlert("Error", "Credit must be a number.");
             return;
         }
 
-        Course course = new Course(name, code, credit, teacher1, teacher2, grade);
-        courseList.add(course);
+        Course q = new Course(j, k, p, m, n, o);
+        i.add(q);
 
-        // Clear fields
-        nameField.clear();
-        codeField.clear();
-        creditField.clear();
-        teacher1Field.clear();
-        teacher2Field.clear();
-        gradeBox.getSelectionModel().clearSelection();
+        a.clear();
+        b.clear();
+        c.clear();
+        d.clear();
+        e.clear();
+        f.clear();
+        g.getSelectionModel().clearSelection();
 
-        // Enable calculate button
-        calculateButton.setDisable(courseList.isEmpty());
+        h.setDisable(i.isEmpty());
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void showAlert(String j, String k)
+    {
+        Alert l = new Alert(Alert.AlertType.WARNING);
+        l.setTitle(j);
+        l.setHeaderText(null);
+        l.setContentText(k);
+        l.showAndWait();
     }
 
     @FXML
-    private void handleCalculate(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/_207010/Result.fxml"));
-        Parent root = loader.load();
+    private void handleCalculate(ActionEvent j) throws IOException
+    {
+        if (i.isEmpty())
+        {
+            showAlert("Error", "Please add at least one course before calculating GPA.");
+            return;
+        }
 
-        // Pass course data to ResultController
-        ResultController resultController = loader.getController();
-        resultController.setCourseData(courseList);
+        FXMLLoader k = new FXMLLoader(getClass().getResource("/com/example/_207010/Result.fxml"));
+        Parent l = k.load();
 
-        Scene resultScene = new Scene(root);
-        resultScene.getStylesheets().add(getClass().getResource("/com/example/_207010/Styles.css").toExternalForm());
+        ResultController m = k.getController();
+        m.setCourseData(i);
 
-        Stage stage = new Stage();
-        stage.setTitle("GPA Calculator - Results");
-        stage.setScene(resultScene);
-        stage.show();
+        Scene n = new Scene(l);
+        n.getStylesheets().add(getClass().getResource("/com/example/_207010/Styles.css").toExternalForm());
 
-        // Close current Course Entry window
-        Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        currentStage.close();
+        Stage o = new Stage();
+        o.setTitle("GPA Calculator - Results");
+        o.setScene(n);
+        o.show();
+
+        Stage p = (Stage) ((Button) j.getSource()).getScene().getWindow();
+        p.close();
     }
 
-    // Inner class to store course info
-    public static class Course {
+    public static class Course
+    {
+        private final int id;
         private final String name, code, teacher1, teacher2, grade;
         private final double credit;
 
-        public Course(String name, String code, double credit, String teacher1, String teacher2, String grade) {
+        public Course(String name, String code, double credit, String teacher1, String teacher2, String grade)
+        {
+            this(0, name, code, credit, teacher1, teacher2, grade);
+        }
+
+        public Course(int id, String name, String code, double credit, String teacher1, String teacher2, String grade)
+        {
+            this.id = id;
             this.name = name;
             this.code = code;
             this.credit = credit;
@@ -114,6 +130,7 @@ public class CourseController {
             this.grade = grade;
         }
 
+        public int getId() { return id; }
         public String getName() { return name; }
         public String getCode() { return code; }
         public double getCredit() { return credit; }
